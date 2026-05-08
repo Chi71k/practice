@@ -1,0 +1,17 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 60px;
+}
+
+.home button {
+  padding: 12px 28px;
+  font-size: 16px;
+  background: #aa3bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
