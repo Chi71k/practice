@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Layout from './components/Layout'   
 import Home from './pages/Home'            
 import MyResumes from './pages/MyResumes'  
-import Profile from './pages/Profile'      
+import Profile from './pages/Profile'  
+import ResumeDetail from './pages/ResumeDetail'    
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="resumes" element={<MyResumes />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="resumes/:id" element={<ResumeDetail />} />
       </Route>   
     </Routes>
   )
