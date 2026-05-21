@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import '../styles/ResumeDetail.css'
 import {useNavigate} from "react-router-dom";
 
-function ResumeDetail() {
+const ResumeDetail = () => {
   const { id } = useParams();
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(false);

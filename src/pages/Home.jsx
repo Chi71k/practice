@@ -4,7 +4,7 @@ import ResumesList from "../components/ResumesList";
 import '../styles/Home.css'
 
 
-function Home() {
+const Home = () => {
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

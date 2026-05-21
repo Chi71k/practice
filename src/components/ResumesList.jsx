@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/ResumesList.css";
 
-function ResumesList({ resumes }) {
+const ResumesList = ({ resumes }) => {
   const navigate = useNavigate();
 
   const grouped = resumes.reduce((acc, resume) => {

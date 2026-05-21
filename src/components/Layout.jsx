@@ -3,7 +3,7 @@ import Header from './Header'
 import Sidebar from './Sidebar' 
 import '../styles/Layout.css'
 
-function Layout() {
+const Layout = () => {
   return (
     <div className="layout">
       <Header />

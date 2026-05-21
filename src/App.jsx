@@ -5,7 +5,7 @@ import MyResumes from './pages/MyResumes'
 import Profile from './pages/Profile'  
 import ResumeDetail from './pages/ResumeDetail'    
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
