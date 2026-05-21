@@ -16,7 +16,7 @@ nav a {
   color: #333;
 }
 
-nav a.active {        /* NavLink сам добавляет этот класс */
+nav a.active {   
   background: #aa3bff;
   color: #fff;
 }

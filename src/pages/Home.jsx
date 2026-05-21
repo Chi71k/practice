@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
 import { getResumes } from "../resumeFakeApi";
-import { useNavigate } from "react-router-dom";
+import ResumesList from "../components/ResumesList";
 import '../styles/Home.css'
 
 
 function Home() {
-  const [count, setCount] = useState(0);
   const [resumes, setResumes] = useState([]);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getResumes().then((data) => {
-      setResumes(data);
-    });
+    const fetchResumes = async () => {
+      try {
+        setLoading(true);
+        const data = await getResumes();
+        setResumes(data); 
+      } catch (err) {
+        setError('Ошибка при загрузке резюме');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchResumes();
   }, []);
+
+  if (loading) {
+    return <p>Загрузка...</p>;
+  }
+
+  if (error) {
+    return <p>Ошибка: {error}</p>;
+  }
 
   return (
     <div>
-      <p>Счетчик: {count}</p>
-      <button onClick={() => setCount(count + 5)}>
-        Нажми
-      </button>
-
-      {resumes.map((resume) => (
-        <div key={resume.id} className="resume-card">
-          <h2>{resume.fullName}</h2> 
-          <p><strong>Позиция:</strong> {resume.position}</p>
-          <p><strong>Город:</strong> {resume.city}</p>
-          <p><strong>Возраст:</strong> {resume.age}</p>
-          <button onClick={() => navigate(`/resumes/${resume.id}`)}>Подробнее</button>
-        </div>
-      ))}
+      <ResumesList resumes={resumes} />
     </div>
   )
 }

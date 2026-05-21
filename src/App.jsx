@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="resumes" element={<MyResumes />} />
+        <Route path="my-resumes" element={<MyResumes />} />
         <Route path="profile" element={<Profile />} />
         <Route path="resumes/:id" element={<ResumeDetail />} />
       </Route>   

@@ -3,11 +3,16 @@ const resumes = [
     id: 1,
     fullName: "Алихан Сейдахметов",
     position: "Frontend Developer",
-    city: "Astana",
+    city: { value: "astana", label: "Astana" },
     age: 19,
     salary: 350000,
     experience: "1 год",
-    skills: ["HTML", "CSS", "JavaScript", "React"],
+    skills: [
+      {value: "html", label: "HTML"}, 
+      {value: "css", label: "CSS"}, 
+      {value: "javascript", label: "JavaScript"}, 
+      {value: "react", label: "React"}
+    ],
     about: "Начинающий frontend-разработчик. Любит создавать аккуратные интерфейсы и изучает React.",
     contacts: {
       email: "alikhan.dev@example.com",
@@ -18,11 +23,16 @@ const resumes = [
     id: 2,
     fullName: "Аружан Нуртаева",
     position: "UI/UX Designer",
-    city: "Almaty",
+    city: { value: "almaty", label: "Almaty" },
     age: 21,
     salary: 400000,
     experience: "2 года",
-    skills: ["Figma", "Prototyping", "Design Systems", "User Research"],
+    skills: [
+      {value: "figma", label: "Figma"},
+      {value: "prototyping", label: "Prototyping"},
+      {value: "design-systems", label: "Design Systems"},
+      {value: "user-research", label: "User Research"}
+    ],
     about: "Дизайнер интерфейсов. Работает с мобильными и веб-приложениями.",
     contacts: {
       email: "aruzhan.ui@example.com",
@@ -33,11 +43,16 @@ const resumes = [
     id: 3,
     fullName: "Данияр Ахметов",
     position: "Backend Developer",
-    city: "Karaganda",
+    city: { value: "karaganda", label: "Karaganda" },
     age: 23,
     salary: 500000,
     experience: "3 года",
-    skills: ["Node.js", "Express", "PostgreSQL", "Docker"],
+    skills: [
+      {value: "nodejs", label: "Node.js"},
+      {value: "express", label: "Express"},
+      {value: "postgresql", label: "PostgreSQL"},
+      {value: "docker", label: "Docker"}
+    ],
     about: "Backend-разработчик. Занимается API, базами данных и серверной логикой.",
     contacts: {
       email: "daniyar.back@example.com",
@@ -48,11 +63,16 @@ const resumes = [
     id: 4,
     fullName: "Мадина Омарова",
     position: "QA Engineer",
-    city: "Astana",
+    city: { value: "astana", label: "Astana" },
     age: 20,
     salary: 300000,
     experience: "1.5 года",
-    skills: ["Manual Testing", "Test Cases", "Postman", "Bug Reports"],
+    skills: [
+      {value: "manual-testing", label: "Manual Testing"},
+      {value: "test-cases", label: "Test Cases"},
+      {value: "postman", label: "Postman"},
+      {value: "bug-reports", label: "Bug Reports"}
+    ],
     about: "QA-инженер. Проверяет веб-приложения, пишет тест-кейсы и баг-репорты.",
     contacts: {
       email: "madina.qa@example.com",
@@ -63,11 +83,16 @@ const resumes = [
     id: 5,
     fullName: "Ерасыл Касымов",
     position: "React Developer",
-    city: "Shymkent",
+    city: { value: "shymkent", label: "Shymkent" },
     age: 22,
     salary: 450000,
     experience: "2 года",
-    skills: ["JavaScript", "React", "Redux", "SCSS"],
+    skills: [
+      {value: "javascript", label: "JavaScript"},
+      {value: "react", label: "React"},
+      {value: "redux", label: "Redux"},
+      {value: "scss", label: "SCSS"}
+    ],
     about: "React-разработчик. Делает интерактивные компоненты и работает с состоянием.",
     contacts: {
       email: "yerassyl.react@example.com",

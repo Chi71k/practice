@@ -8,6 +8,8 @@ function Sidebar() {
       <NavLink to="/">Главная</NavLink>
       <br />
       <NavLink to="/resumes">Резюме</NavLink>
+      <br />
+      <NavLink to="/my-resumes">Мои резюме</NavLink>
     </nav>
   )
 }
