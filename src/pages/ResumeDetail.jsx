@@ -40,13 +40,13 @@ const ResumeDetail = () => {
     <div className="resume-detail">
       <h1>{resume.fullName}</h1>
       <p><strong>Позиция:</strong> {resume.position}</p>
-      <p><strong>Город:</strong> {resume.city.label}</p>
+      <p><strong>Город:</strong> {resume.city}</p>
       <p><strong>Возраст:</strong> {resume.age}</p>
       <p><strong>Зарплата:</strong> {resume.salary}</p>
       <p><strong>Опыт:</strong> {resume.experience}</p>
       <div className="skills">
         {resume.skills.map(skill => (
-          <span key={skill.value} className="skill-tag">{skill.label}</span>
+          <span key={skill} className="skill-tag">{skill}</span>
         ))}
       </div>
       <div className="resume-section">
