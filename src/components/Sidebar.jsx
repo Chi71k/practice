@@ -1,15 +1,21 @@
 import { NavLink } from "react-router-dom";
-import '../styles/Sidebar.css'
+import styles from "../styles/Sidebar.module.scss";
 
 
 const Sidebar = () => {
   return (
-    <nav>
-      <NavLink to="/">Главная</NavLink>
+    <nav className={styles.nav}>
+      <NavLink to="/" className={styles.navLink}>
+       Главная
+      </NavLink>
       <br />
-      {/* <NavLink to="/resumes">Резюме</NavLink> */}
+      {/* <NavLink to="/resumes" className={styles.navLink}>
+        Резюме
+      </NavLink> */}
       <br />
-      <NavLink to="/my-resumes">Мои резюме</NavLink>
+      <NavLink to="/my-resumes" className={styles.navLink}>
+        Мои резюме
+      </NavLink>
     </nav>
   )
 }

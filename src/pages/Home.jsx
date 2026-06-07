@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getResumes } from "../resumeFakeApi";
 import ResumesList from "../components/ResumesList";
-import '../styles/Home.css'
-
+import styles from "../styles/Home.module.scss";
+import '../styles/global.scss';
 
 const Home = () => {
   const [resumes, setResumes] = useState([]);
@@ -33,7 +33,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className={styles.home}>
       <ResumesList resumes={resumes} />
     </div>
   )

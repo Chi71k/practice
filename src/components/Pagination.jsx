@@ -1,4 +1,4 @@
-import "../styles/Pagination.css";
+import styles from '../styles/Pagination.module.scss';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 const startPage = Math.max(1, Math.min(currentPage - 1, totalPages - 2));
@@ -14,20 +14,20 @@ const endPage = Math.min(totalPages, startPage + 2);
     }
   };
 
-  return (<div className="pagination">
-    <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+  return (<div className={styles.pagination}>
+    <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className={styles.paginationButton}>
       {'\u00AB'}
     </button>
     {pages.map(page => (
       <button
         key={page}
         onClick={() => handlePageChange(page)}
-        className={page === currentPage ? "page-active" : ""}
+        className={page === currentPage ? styles.pageActive : styles.paginationButton}
       >
         {page}
       </button>
     ))}
-    <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+    <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.paginationButton}>
       {'\u00BB'}
     </button>
   </div>);

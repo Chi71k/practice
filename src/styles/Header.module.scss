@@ -1,19 +1,21 @@
-header {
+@use './global' as *;
+
+.header {
   display: flex;
   justify-content: space-between; 
   align-items: center;
   padding: 0 24px;
   height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #e5e4e7;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
 }
 
-.header-logo {
+.headerLogo {
   height: 56px;
   width: 100%;
 }
 
-.header-avatar {
+.headerAvatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;

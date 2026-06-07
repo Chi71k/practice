@@ -1,0 +1,26 @@
+@use './global' as *;
+
+
+.btnResume {
+  margin-top: 12px;
+  padding: 10px 20px;
+  font-size: $font-size-md;
+  background: $color-primary;
+  color: $color-bg;
+  border: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+}
+
+.resumeCard {
+  margin: 15px 0;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-md;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+

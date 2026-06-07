@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../styles/ResumesList.css";
+import styles from "../styles/ResumesList.module.scss";
 import Pagination from "./Pagination";
 import { useState } from "react";
 
@@ -17,13 +17,15 @@ const ResumesList = ({ resumes }) => {
 
 
   return (
-    <div className="resumes-list">
+    <div className={styles.resumesList}>
       {currentResumes.map((resume) => (
-        <div key={resume.id} className="resume-card">
+        <div key={resume.id} className={styles.resumeCard}>
           <h3>{resume.fullName}</h3>
           <p><strong>Позиция:</strong> {resume.position}</p>
           <p><strong>Возраст:</strong> {resume.age}</p>
-          <button className="btn-resume" onClick={() => navigate(`/resumes/${resume.id}`)}>Подробнее</button>
+          <button className={styles.btnResume} onClick={() => navigate(`/resumes/${resume.id}`)}>
+            Подробнее
+          </button>
         </div>
       ))}
 

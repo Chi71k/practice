@@ -1,47 +1,49 @@
+@use './global' as *;
+
 .skills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.skill-tag {
-  background: #f0e6ff;
-  color: #aa3bff;
+.skillTag {
+  background: $color-primary;
+  color: $color-bg;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: $font-size-sm;
 }
 
-.resume-detail {
+.resumeDetail {
   max-width: 680px;
   padding: 32px;
 }
 
-.resume-detail h1 {
+.resumeDetail h1 {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 24px;
 }
 
-.resume-detail p {
+.resumeDetail p {
   font-size: 15px;
   line-height: 1.6;
-  color: #333;
+  color: $color-text;
   margin-bottom: 8px;
 }
 
-.resume-section {
+.resumeSection {
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid #e5e4e7;
+  border-top: 1px solid $color-border;
 }
 
-.btn-back {
+.btnBack {
   margin-top: 24px;
   padding: 10px 20px;
-  font-size: 14px;
-  background: #aa3bff;
-  color: white;
+  font-size: $font-size-md;
+  background: $color-primary;
+  color: $color-bg;
   border: none;
   border-radius: 6px;
   cursor: pointer;
