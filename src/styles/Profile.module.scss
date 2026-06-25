@@ -1,0 +1,29 @@
+@use './global' as *;
+
+.profile {
+  max-width: 480px;
+  padding: $space-xl;
+}
+
+.profile h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: $space-xl;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitBtn {
+  margin-top: $space-sm;
+  padding: 12px 24px;
+  background: $color-primary;
+  color: $color-bg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  cursor: pointer;
+  align-self: flex-start;
+}

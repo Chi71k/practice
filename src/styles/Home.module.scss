@@ -1,7 +1,9 @@
 @use './global' as *;
 
 .home {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-md;
+  padding-top: 60px;
 }

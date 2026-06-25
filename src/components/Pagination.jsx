@@ -22,7 +22,7 @@ const endPage = Math.min(totalPages, startPage + 2);
       <button
         key={page}
         onClick={() => handlePageChange(page)}
-        className={page === currentPage ? styles.pageActive : styles.paginationButton}
+        className={`${styles.paginationButton}${page === currentPage ? ` ${styles.pageActive}` : ''}`}
       >
         {page}
       </button>

@@ -5,15 +5,15 @@ import styles from "../styles/Sidebar.module.scss";
 const Sidebar = () => {
   return (
     <nav className={styles.nav}>
-      <NavLink to="/" className={styles.navLink}>
+      <NavLink to="/">
        Главная
       </NavLink>
       <br />
-      {/* <NavLink to="/resumes" className={styles.navLink}>
+      {/* <NavLink to="/resumes">
         Резюме
       </NavLink> */}
       <br />
-      <NavLink to="/my-resumes" className={styles.navLink}>
+      <NavLink to="/my-resumes">
         Мои резюме
       </NavLink>
     </nav>

@@ -1,9 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getResumeById } from "../resumeFakeApi";
 import { useEffect, useState } from "react";
 import styles from "../styles/ResumeDetail.module.scss";
-import '../styles/global.scss';
-import {useNavigate} from "react-router-dom";
 
 const ResumeDetail = () => {
   const { id } = useParams();

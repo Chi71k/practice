@@ -1,0 +1,36 @@
+@use './global' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: $space-md;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text;
+  font-weight: 500;
+}
+
+.input {
+  padding: 10px 14px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  color: $color-text;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.inputError {
+  border-color: #e53935;
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: #e53935;
+}
