@@ -1,6 +1,7 @@
-import styles from '../styles/TextField.module.scss'; 
+import { forwardRef } from 'react';
+import styles from '../styles/TextField.module.scss';
 
-const TextField = ({ name, label, value, onChange, error, type = 'text', placeholder, onBlur }) => {
+const TextField = forwardRef(({ name, label, error, type = 'text', placeholder, onChange, onBlur }, ref) => {
   return (
     <div className={styles.field}>
       <label htmlFor={name} className={styles.label}>
@@ -10,7 +11,7 @@ const TextField = ({ name, label, value, onChange, error, type = 'text', placeho
         id={name}
         name={name}
         type={type}
-        value={value}
+        ref={ref}
         onChange={onChange}
         onBlur={onBlur}
         placeholder={placeholder}
@@ -19,6 +20,8 @@ const TextField = ({ name, label, value, onChange, error, type = 'text', placeho
       {error && <span className={styles.error}>{error}</span>}
     </div>
   );
-};
+});
+
+TextField.displayName = 'TextField';
 
 export default TextField;

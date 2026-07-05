@@ -1,83 +1,57 @@
-import { useState } from 'react';
-import TextField from '../components/TextField'; 
-import validateForm from '../utils/validators/validateForm';
-import { hasErrors, createChangeHandler, createClearFieldError, createInitialValues } from '../utils/formUtils';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
+import TextField from '../components/TextField';
+import { profileSchema } from '../schemas/profileSchema';
 import styles from '../styles/Profile.module.scss';
 
-const validatorConfig = {
-  fullName: {
-    isRequired: { message: 'Введите имя' },
-    minLength: { value: 2, message: 'Имя должно быть не короче 2 символов' },
-  },
-  email: {
-    isRequired: { message: 'Введите email' },
-    isEmail: { message: 'Некорректный email' },
-  },
-  phone: {
-    isRequired: { message: 'Введите телефон' },
-    minLength: { value: 10, message: 'Телефон должен содержать минимум 10 символов' },
-  },
-  city: {
-    isRequired: { message: 'Введите город' },
-  },
-};
-
 const Profile = () => {
-  const [values, setValues] = useState(
-    createInitialValues(['fullName', 'email', 'phone', 'city'])
-  );
-  const [errors, setErrors] = useState({});
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(profileSchema),
+  });
 
-  const handleChange = createChangeHandler(setValues);
-  const clearFieldError = createClearFieldError(setErrors);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = validateForm(values, validatorConfig);
-    if (hasErrors(newErrors)) {
-      setErrors(newErrors);
-      return;
+  useEffect(() => {
+    const saved = localStorage.getItem('profile');
+    if (saved) {
+      reset(JSON.parse(saved));
     }
-    console.log('Данные формы:', values);
+  }, []);
+
+  const onSubmit = (data) => {
+    localStorage.setItem('profile', JSON.stringify(data));
+    console.log('Данные формы:', data);
   };
 
   return (
     <div className={styles.profile}>
       <h1>Профиль</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
         <TextField
-          name="fullName"
+          {...register('fullName')}
           label="ФИО"
-          value={values.fullName}
-          onChange={handleChange}
-          onBlur={() => clearFieldError('fullName')}
-          error={errors.fullName ?? ''}
+          error={errors.fullName?.message}
         />
         <TextField
-          name="email"
+          {...register('email')}
           label="Email"
           type="email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={() => clearFieldError('email')}
-          error={errors.email ?? ''}
+          error={errors.email?.message}
         />
         <TextField
-          name="phone"
+          {...register('phone')}
           label="Телефон"
           type="tel"
-          value={values.phone}
-          onChange={handleChange}
-          onBlur={() => clearFieldError('phone')}
-          error={errors.phone ?? ''}
+          error={errors.phone?.message}
         />
         <TextField
-          name="city"
+          {...register('city')}
           label="Город"
-          value={values.city}
-          onChange={handleChange}
-          onBlur={() => clearFieldError('city')}
-          error={errors.city ?? ''}
+          error={errors.city?.message}
         />
         <button type="submit" className={styles.submitBtn}>
           Сохранить
