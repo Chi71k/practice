@@ -74,6 +74,16 @@
   font-size: $font-size-sm;
 }
 
+.badge {
+  display: inline-block;
+  margin-top: $space-sm;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: $color-primary-light;
+  color: $color-primary;
+  font-size: $font-size-sm;
+}
+
 .deleteBtn {
   margin-top: $space-sm;
   padding: 8px 16px;

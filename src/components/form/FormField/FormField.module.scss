@@ -1,0 +1,28 @@
+@use '../../../styles/global' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: $space-md;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text;
+  font-weight: 500;
+}
+
+.required {
+  color: $color-error;
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: $color-error;
+}
+
+.hint {
+  font-size: $font-size-sm;
+  color: $color-hint;
+}

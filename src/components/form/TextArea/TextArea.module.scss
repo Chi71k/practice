@@ -1,0 +1,27 @@
+@use '../../../styles/global' as *;
+
+.textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  color: $color-text;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+
+  &:disabled {
+    background: $color-bg-sidebar;
+    color: #999;
+    cursor: not-allowed;
+  }
+}
+
+.textareaError {
+  border-color: $color-error;
+}

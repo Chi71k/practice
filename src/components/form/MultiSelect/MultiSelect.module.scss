@@ -1,0 +1,37 @@
+@use '../../../styles/global' as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+}
+
+.listError {
+  border-color: $color-error;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  font-size: $font-size-sm;
+  color: $color-text;
+  cursor: pointer;
+  user-select: none;
+}
+
+.optionSelected {
+  border-color: $color-primary;
+  background: $color-primary-light;
+  color: $color-primary;
+}
+
+.checkboxInput {
+  accent-color: $color-primary;
+}
