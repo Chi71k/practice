@@ -16,8 +16,13 @@
   flex-direction: column;
 }
 
-.submitBtn {
+.actions {
+  display: flex;
+  gap: $space-sm;
   margin-top: $space-sm;
+}
+
+.submitBtn {
   padding: 12px 24px;
   background: $color-primary;
   color: $color-bg;
@@ -25,5 +30,14 @@
   border-radius: $border-radius-md;
   font-size: $font-size-md;
   cursor: pointer;
-  align-self: flex-start;
+}
+
+.clearBtn {
+  padding: 12px 24px;
+  background: transparent;
+  color: $color-error;
+  border: 1px solid $color-error;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  cursor: pointer;
 }

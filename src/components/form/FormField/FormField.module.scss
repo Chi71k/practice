@@ -17,6 +17,12 @@
   color: $color-error;
 }
 
+.fieldError {
+  .label {
+    color: $color-error;
+  }
+}
+
 .error {
   font-size: $font-size-sm;
   color: $color-error;

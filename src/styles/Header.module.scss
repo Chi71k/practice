@@ -21,3 +21,24 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.headerResumesCount {
+  font-size: $font-size-sm;
+  color: $color-text;
+  text-decoration: none;
+}
+
+.headerProfileLink {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  color: $color-text;
+  text-decoration: none;
+  font-size: $font-size-sm;
+}

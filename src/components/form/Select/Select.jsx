@@ -12,7 +12,6 @@ const Select = forwardRef(({
         id={name}
         name={name}
         ref={ref}
-        defaultValue=""
         disabled={disabled}
         onChange={onChange}
         onBlur={onBlur}

@@ -5,9 +5,15 @@ const RadioGroup = ({
   name, label, options = [], value, onChange, onBlur,
   disabled = false, error, hint, required,
 }) => {
+  const handleGroupBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      onBlur?.();
+    }
+  };
+
   return (
     <FormField error={error} hint={hint}>
-      <fieldset className={styles.fieldset} onBlur={onBlur}>
+      <fieldset className={styles.fieldset} onBlur={handleGroupBlur}>
         {label && (
           <legend className={styles.legend}>
             {label}

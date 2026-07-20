@@ -15,11 +15,17 @@ const MultiSelect = ({
     onChange([...value, optValue]);
   };
 
+  const handleGroupBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      onBlur?.();
+    }
+  };
+
   return (
     <FormField label={label} htmlFor={name} error={error} hint={hint} required={required}>
       <div
         className={`${styles.list} ${error ? styles.listError : ''}`}
-        onBlur={onBlur}
+        onBlur={handleGroupBlur}
         role="group"
         aria-invalid={!!error}
       >
