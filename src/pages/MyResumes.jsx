@@ -169,9 +169,6 @@ const MyResumes = () => {
     };
 
     addResume(resume);
-    // react-hook-form@7.82 + React 19.2: reset() updates internal state but
-    // not the underlying uncontrolled DOM inputs here, so the add-form is
-    // remounted via key instead of relying on reset() to clear it visually.
     setFormKey((key) => key + 1);
   }, [addResume]);
 

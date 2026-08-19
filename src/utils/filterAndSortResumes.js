@@ -1,3 +1,7 @@
+import { positionOptions } from '../constants/formOptions';
+
+const positionLabel = (value) => positionOptions.find((option) => option.value === value)?.label ?? value;
+
 export const filterAndSortResumes = (resumes, filters) => {
   const { search = '', city = '', employmentType = '', sortBy = '' } = filters;
   const query = search.trim().toLowerCase();
@@ -5,7 +9,7 @@ export const filterAndSortResumes = (resumes, filters) => {
   const filtered = resumes.filter((resume) => {
     const matchesQuery = !query
       || resume.fullName.toLowerCase().includes(query)
-      || resume.position.toLowerCase().includes(query);
+      || positionLabel(resume.position).toLowerCase().includes(query);
     const matchesCity = !city || resume.city === city;
     const matchesEmploymentType = !employmentType || resume.employmentType === employmentType;
 

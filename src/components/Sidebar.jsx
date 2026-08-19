@@ -16,6 +16,10 @@ const Sidebar = () => {
       <NavLink to="/my-resumes">
         Мои резюме
       </NavLink>
+      <br />
+      <NavLink to="/http-playground">
+        HTTP Playground
+      </NavLink>
     </nav>
   )
 }

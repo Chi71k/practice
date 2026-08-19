@@ -1,0 +1,41 @@
+@use './global' as *;
+
+.login {
+  max-width: 380px;
+  padding: $space-xl;
+}
+
+.login h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: $space-xl;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.apiError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  margin-bottom: $space-sm;
+}
+
+.submitBtn {
+  margin-top: $space-sm;
+  padding: 12px 24px;
+  background: $color-primary;
+  color: $color-bg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  cursor: pointer;
+  align-self: flex-start;
+
+  &:disabled {
+    background: $color-border;
+    color: #999;
+    cursor: not-allowed;
+  }
+}

@@ -19,6 +19,7 @@ export const useLocalStorage = (key, initialValue) => {
         localStorage.setItem(key, JSON.stringify(resolved));
       } catch {
         console.error(`Не удалось сохранить "${key}" в localStorage`);
+        return prev;
       }
       return resolved;
     });
@@ -29,6 +30,7 @@ export const useLocalStorage = (key, initialValue) => {
       localStorage.removeItem(key);
     } catch {
       console.error(`Не удалось удалить "${key}" из localStorage`);
+      return;
     }
     setValueState(initialValue);
   }, [key, initialValue]);

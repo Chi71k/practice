@@ -1,12 +1,15 @@
+import AuthProvider from './AuthProvider';
 import ProfileProvider from './ProfileProvider';
 import MyResumesProvider from './MyResumesProvider';
 
 const AppProviders = ({ children }) => (
-  <ProfileProvider>
-    <MyResumesProvider>
-      {children}
-    </MyResumesProvider>
-  </ProfileProvider>
+  <AuthProvider>
+    <ProfileProvider>
+      <MyResumesProvider>
+        {children}
+      </MyResumesProvider>
+    </ProfileProvider>
+  </AuthProvider>
 );
 
 export default AppProviders;

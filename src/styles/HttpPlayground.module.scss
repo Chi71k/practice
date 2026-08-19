@@ -1,0 +1,79 @@
+@use './global' as *;
+
+.page {
+  max-width: 700px;
+  padding: $space-xl;
+}
+
+.page h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: $space-md;
+}
+
+.hint {
+  font-size: $font-size-sm;
+  color: $color-text;
+  margin-bottom: $space-lg;
+}
+
+.hint code {
+  background: $color-bg-sidebar;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
+}
+
+.actions button {
+  padding: 10px 16px;
+  background: $color-primary;
+  color: $color-bg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  cursor: pointer;
+
+  &:disabled {
+    background: $color-border;
+    color: #999;
+    cursor: not-allowed;
+  }
+}
+
+.cancelBtn {
+  background: transparent !important;
+  color: $color-error !important;
+  border: 1px solid $color-error !important;
+}
+
+.result {
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-md;
+}
+
+.error {
+  color: $color-error;
+}
+
+.meta {
+  font-size: $font-size-sm;
+  color: $color-text;
+  margin-bottom: $space-sm;
+}
+
+.body {
+  background: $color-bg-sidebar;
+  padding: $space-md;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
