@@ -1,16 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
-import styles from "../styles/Header.module.scss";
-import logo from '../assets/Логотип.png'
+import { Link, useNavigate } from 'react-router-dom';
+import styles from '../styles/Header.module.scss';
+import logo from '../assets/Логотип.png';
 import { useAuth } from '../hooks/useAuth';
 import { useMyResumes } from '../hooks/useMyResumes';
+import { isCandidate } from '../utils/permissions';
 
 const Header = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const { resumesCount } = useMyResumes();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/login');
   };
 
@@ -22,12 +23,14 @@ const Header = () => {
       <div className={styles.headerRight}>
         {isAuthenticated ? (
           <>
-            <Link to="/my-resumes" className={styles.headerResumesCount}>
-              Мои резюме: {resumesCount}
-            </Link>
+            {isCandidate(user) && (
+              <Link to="/my-resumes" className={styles.headerResumesCount}>
+                Мои резюме: {resumesCount}
+              </Link>
+            )}
             <Link to="/profile" className={styles.headerProfileLink}>
               <img src="https://via.placeholder.com/40" alt="Профиль" className={styles.headerAvatar} />
-              <span>{user?.firstName ?? 'Профиль'}</span>
+              <span>{user?.name ?? 'Профиль'}</span>
             </Link>
             <button type="button" onClick={handleLogout} className={styles.headerLogoutBtn}>
               Выйти
@@ -40,7 +43,7 @@ const Header = () => {
         )}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

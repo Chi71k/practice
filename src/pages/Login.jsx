@@ -20,7 +20,7 @@ const Login = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(loginSchema),
-    defaultValues: { username: '', password: '' },
+    defaultValues: { email: '', password: '' },
   });
 
   useEffect(() => () => {
@@ -48,7 +48,7 @@ const Login = () => {
     return <Navigate to="/profile" replace />;
   }
 
-  const usernameField = register('username');
+  const emailField = register('email');
   const passwordField = register('password');
 
   const handleFieldChange = (field) => (event) => {
@@ -61,11 +61,12 @@ const Login = () => {
       <h1>Вход</h1>
       <form onSubmit={handleFormSubmit} noValidate className={styles.form}>
         <TextField
-          {...usernameField}
-          onChange={handleFieldChange(usernameField)}
-          label="Логин"
-          placeholder="emilys"
-          error={errors.username?.message}
+          {...emailField}
+          onChange={handleFieldChange(emailField)}
+          label="Email"
+          type="email"
+          placeholder="candidate@example.test"
+          error={errors.email?.message}
         />
 
         <TextField

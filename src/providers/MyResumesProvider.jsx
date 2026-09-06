@@ -3,49 +3,67 @@ import {
 } from 'react';
 import MyResumesContext from '../contexts/MyResumesContext';
 import { initialMyResumesState, myResumesReducer } from '../reducers/myResumesReducer';
-import { MY_RESUMES_STORAGE_KEY } from '../constants/storageKeys';
-
-const loadInitialState = () => {
-  try {
-    const raw = localStorage.getItem(MY_RESUMES_STORAGE_KEY);
-    return raw ? { resumes: JSON.parse(raw) } : initialMyResumesState;
-  } catch {
-    return initialMyResumesState;
-  }
-};
+import * as resumesApi from '../api/resumesApi';
+import { useAuth } from '../hooks/useAuth';
+import { isCandidate } from '../utils/permissions';
 
 const MyResumesProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(myResumesReducer, undefined, loadInitialState);
+  const { user, isAuthenticated } = useAuth();
+  const [state, dispatch] = useReducer(myResumesReducer, initialMyResumesState);
+  const canHaveResumes = isAuthenticated && isCandidate(user);
+
+  const fetchResumes = useCallback(async (options = {}) => {
+    dispatch({ type: 'resumes/fetchStarted' });
+    try {
+      const resumes = await resumesApi.getMyResumes(options);
+      dispatch({ type: 'resumes/fetchSucceeded', payload: { resumes } });
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      dispatch({ type: 'resumes/fetchFailed', payload: { error: err } });
+    }
+  }, []);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(MY_RESUMES_STORAGE_KEY, JSON.stringify(state.resumes));
-    } catch {
-      console.error('Не удалось сохранить резюме в localStorage');
+    if (!canHaveResumes) {
+      dispatch({ type: 'resumes/cleared' });
+      return undefined;
     }
-  }, [state.resumes]);
 
-  const addResume = useCallback((resume) => {
-    dispatch({ type: 'resume/added', payload: resume });
-  }, []);
+    const controller = new AbortController();
+    fetchResumes({ signal: controller.signal });
+    return () => controller.abort();
+  }, [canHaveResumes, user?.id, fetchResumes]);
 
-  const deleteResume = useCallback((id) => {
-    dispatch({ type: 'resume/deleted', payload: id });
-  }, []);
+  const createResume = useCallback(async (payload) => {
+    await resumesApi.createResume(payload);
+    await fetchResumes();
+  }, [fetchResumes]);
 
-  const clearResumes = useCallback(() => {
-    dispatch({ type: 'resumes/cleared' });
-  }, []);
+  const updateResume = useCallback(async (id, payload) => {
+    await resumesApi.updateResume(id, payload);
+    await fetchResumes();
+  }, [fetchResumes]);
+
+  const deleteResume = useCallback(async (id) => {
+    await resumesApi.deleteResume(id);
+    await fetchResumes();
+  }, [fetchResumes]);
 
   const resumesCount = state.resumes.length;
 
   const value = useMemo(() => ({
     resumes: state.resumes,
     resumesCount,
-    addResume,
+    status: state.status,
+    error: state.error,
+    createResume,
+    updateResume,
     deleteResume,
-    clearResumes,
-  }), [state.resumes, resumesCount, addResume, deleteResume, clearResumes]);
+    refresh: fetchResumes,
+  }), [
+    state.resumes, resumesCount, state.status, state.error,
+    createResume, updateResume, deleteResume, fetchResumes,
+  ]);
 
   return (
     <MyResumesContext value={value}>

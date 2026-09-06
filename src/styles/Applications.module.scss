@@ -1,0 +1,87 @@
+@use './global' as *;
+
+.page {
+  max-width: 720px;
+  padding: $space-xl;
+}
+
+.page h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: $space-xl;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.card {
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-md;
+}
+
+.card h3 {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  margin-bottom: $space-sm;
+}
+
+.card p {
+  font-size: $font-size-md;
+  color: $color-text;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  margin: $space-sm 0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: $color-primary-light;
+  color: $color-primary;
+  font-size: $font-size-sm;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-top: $space-sm;
+  flex-wrap: wrap;
+}
+
+.statusSelect {
+  padding: 6px 10px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+}
+
+.withdrawBtn {
+  padding: 8px 16px;
+  background: transparent;
+  color: $color-error;
+  border: 1px solid $color-error;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  padding: 8px 16px;
+  background: $color-error;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  cursor: pointer;
+}
+
+.rowError {
+  font-size: $font-size-sm;
+  color: $color-error;
+  margin-top: $space-sm;
+}

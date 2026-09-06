@@ -1,0 +1,82 @@
+@use './global' as *;
+
+.page {
+  max-width: 900px;
+  padding: $space-xl;
+}
+
+.page h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: $space-lg;
+}
+
+.page h2 {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  margin: $space-xl 0 $space-md;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+}
+
+.submitBtn {
+  margin-top: $space-sm;
+  padding: 12px 24px;
+  background: $color-primary;
+  color: $color-bg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.banner {
+  font-size: $font-size-sm;
+  margin-bottom: $space-sm;
+}
+
+.bannerError {
+  color: $color-error;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: $space-sm;
+  border-bottom: 1px solid $color-border;
+  vertical-align: top;
+}
+
+.roleSelect {
+  padding: 6px 10px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+}
+
+.deleteBtn {
+  padding: 6px 12px;
+  background: $color-error;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  cursor: pointer;
+}
+
+.rowError {
+  color: $color-error;
+  font-size: $font-size-sm;
+  margin-top: 4px;
+}

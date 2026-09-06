@@ -1,25 +1,27 @@
-export const initialMyResumesState = { resumes: [] };
+export const initialMyResumesState = {
+  status: 'idle',
+  resumes: [],
+  error: null,
+};
 
 export const myResumesReducer = (state, action) => {
   switch (action.type) {
-    case 'resume/added':
-      return { ...state, resumes: [...state.resumes, action.payload] };
+    case 'resumes/fetchStarted':
+      return { ...state, status: 'loading', error: null };
 
-    case 'resume/deleted':
-      return { ...state, resumes: state.resumes.filter((resume) => resume.id !== action.payload) };
-
-    case 'resume/updated':
+    case 'resumes/fetchSucceeded':
       return {
         ...state,
-        resumes: state.resumes.map((resume) => (
-          resume.id === action.payload.id
-            ? { ...resume, ...action.payload.changes }
-            : resume
-        )),
+        status: 'succeeded',
+        resumes: action.payload.resumes,
+        error: null,
       };
 
+    case 'resumes/fetchFailed':
+      return { ...state, status: 'failed', error: action.payload.error };
+
     case 'resumes/cleared':
-      return { ...state, resumes: [] };
+      return initialMyResumesState;
 
     default:
       throw new Error(`Неизвестный action type: ${action.type}`);

@@ -6,19 +6,16 @@ export const cityOptions = [
   { value: 'other', label: 'Other' },
 ];
 
-export const positionOptions = [
-  { value: 'frontend', label: 'Frontend Developer' },
-  { value: 'backend', label: 'Backend Developer' },
-  { value: 'fullstack', label: 'Fullstack Developer' },
-  { value: 'designer', label: 'UI/UX Designer' },
-  { value: 'qa', label: 'QA Engineer' },
-  { value: 'other', label: 'Другое' },
+export const vacancyEmploymentTypeOptions = [
+  { value: 'OFFICE', label: 'Офис' },
+  { value: 'REMOTE', label: 'Удалённо' },
+  { value: 'HYBRID', label: 'Гибрид' },
 ];
 
-export const employmentTypeOptions = [
-  { value: 'office', label: 'Офис' },
-  { value: 'remote', label: 'Удалённо' },
-  { value: 'hybrid', label: 'Гибрид' },
+export const vacancyStatusOptions = [
+  { value: 'DRAFT', label: 'Черновик' },
+  { value: 'PUBLISHED', label: 'Опубликована' },
+  { value: 'CLOSED', label: 'Закрыта' },
 ];
 
 export const experienceLevelOptions = [

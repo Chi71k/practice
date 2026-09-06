@@ -3,19 +3,15 @@ import { useMemo, useState } from 'react';
 export const useResumeFilters = () => {
   const [search, setSearch] = useState('');
   const [city, setCity] = useState('');
-  const [employmentType, setEmploymentType] = useState('');
   const [sortBy, setSortBy] = useState('');
 
-  const filters = useMemo(() => ({
-    search, city, employmentType, sortBy,
-  }), [search, city, employmentType, sortBy]);
+  const filters = useMemo(() => ({ search, city, sortBy }), [search, city, sortBy]);
 
-  const isActive = !!(search || city || employmentType || sortBy);
+  const isActive = !!(search || city || sortBy);
 
   const reset = () => {
     setSearch('');
     setCity('');
-    setEmploymentType('');
     setSortBy('');
   };
 
@@ -25,8 +21,6 @@ export const useResumeFilters = () => {
     setSearch,
     city,
     setCity,
-    employmentType,
-    setEmploymentType,
     sortBy,
     setSortBy,
     isActive,

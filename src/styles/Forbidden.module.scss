@@ -1,0 +1,17 @@
+@use './global' as *;
+
+.forbidden {
+  padding: $space-xl;
+  border: 1px solid $color-error;
+  border-radius: $border-radius-md;
+  max-width: 480px;
+
+  h2 {
+    margin-bottom: $space-sm;
+    color: $color-error;
+  }
+
+  p {
+    margin-bottom: $space-sm;
+  }
+}

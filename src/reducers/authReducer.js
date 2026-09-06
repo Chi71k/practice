@@ -1,7 +1,6 @@
 export const initialAuthState = {
-  status: 'anonymous',
+  status: 'loading',
   user: null,
-  accessToken: null,
   error: null,
 };
 
@@ -19,7 +18,6 @@ export const authReducer = (state, action) => {
         ...state,
         status: 'authenticated',
         user: action.payload.user,
-        accessToken: action.payload.accessToken,
         error: null,
       };
 
@@ -28,7 +26,6 @@ export const authReducer = (state, action) => {
         ...state,
         status: 'error',
         user: null,
-        accessToken: null,
         error: action.payload.error,
       };
 
@@ -37,7 +34,6 @@ export const authReducer = (state, action) => {
         ...state,
         status: 'anonymous',
         user: null,
-        accessToken: null,
         error: null,
       };
 

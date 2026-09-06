@@ -1,14 +1,21 @@
 import { ApiError } from './ApiError';
 
-const DEFAULT_BASE_URL = 'https://dummyjson.com';
+const DEFAULT_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 const isFormData = (body) => typeof FormData !== 'undefined' && body instanceof FormData;
 
 const buildUrl = (endpoint) => (endpoint.startsWith('http') ? endpoint : `${DEFAULT_BASE_URL}${endpoint}`);
 
+const unwrap = (payload) => {
+  if (payload && typeof payload === 'object' && Object.prototype.hasOwnProperty.call(payload, 'data')) {
+    return { data: payload.data, meta: payload.meta };
+  }
+  return { data: payload, meta: undefined };
+};
+
 const performRequest = async (endpoint, options = {}) => {
   const {
-    method = 'GET', headers = {}, body, token, signal, credentials,
+    method = 'GET', headers = {}, body, token, signal, credentials = 'include',
   } = options;
 
   const finalHeaders = { ...headers };
@@ -33,22 +40,25 @@ const performRequest = async (endpoint, options = {}) => {
 
   const contentType = response.headers.get('content-type') || '';
 
-  let data;
+  let payload;
   if (response.status === 204) {
-    data = undefined;
+    payload = undefined;
   } else if (contentType.includes('application/json')) {
-    data = await response.json();
+    payload = await response.json();
   } else {
-    data = await response.text();
+    payload = await response.text();
   }
 
   if (!response.ok) {
-    const message = (data && typeof data === 'object' && data.message)
+    const message = (payload && typeof payload === 'object' && (payload.error?.message || payload.message))
       || `Запрос завершился ошибкой ${response.status}`;
-    throw new ApiError(message, { status: response.status, data });
+    throw new ApiError(message, { status: response.status, data: payload });
   }
 
-  return { data, status: response.status, contentType };
+  const { data, meta } = unwrap(payload);
+  return {
+    data, meta, status: response.status, contentType,
+  };
 };
 
 export const request = async (endpoint, options) => {

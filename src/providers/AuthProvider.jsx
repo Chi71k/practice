@@ -1,13 +1,15 @@
-import { useCallback, useMemo, useReducer } from 'react';
+import {
+  useCallback, useEffect, useMemo, useReducer,
+} from 'react';
 import AuthContext from '../contexts/AuthContext';
 import { authReducer, initialAuthState } from '../reducers/authReducer';
-import { login as loginRequest, getCurrentUser } from '../api/authApi';
+import * as authApi from '../api/authApi';
 import { ApiError } from '../api/ApiError';
 
 const resolveErrorMessage = (err) => {
   if (err instanceof ApiError) {
     if (err.status === 400 || err.status === 401) {
-      return 'Неверный логин или пароль';
+      return 'Неверный email или пароль';
     }
     return `Сервер вернул ошибку (${err.status})`;
   }
@@ -17,16 +19,27 @@ const resolveErrorMessage = (err) => {
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialAuthState);
 
+  useEffect(() => {
+    const controller = new AbortController();
+
+    authApi.getCurrentUser({ signal: controller.signal })
+      .then((user) => {
+        dispatch({ type: 'auth/loginSucceeded', payload: { user } });
+      })
+      .catch((err) => {
+        if (err.name === 'AbortError') return;
+        dispatch({ type: 'auth/loggedOut' });
+      });
+
+    return () => controller.abort();
+  }, []);
+
   const login = useCallback(async (credentials, options = {}) => {
     dispatch({ type: 'auth/loginStarted' });
 
     try {
-      const loginData = await loginRequest(credentials, options);
-      const user = await getCurrentUser(loginData.accessToken, options);
-      dispatch({
-        type: 'auth/loginSucceeded',
-        payload: { user, accessToken: loginData.accessToken },
-      });
+      const user = await authApi.login(credentials, options);
+      dispatch({ type: 'auth/loginSucceeded', payload: { user } });
     } catch (err) {
       if (err.name === 'AbortError') {
         dispatch({ type: 'auth/loggedOut' });
@@ -37,8 +50,14 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const logout = useCallback(() => {
-    dispatch({ type: 'auth/loggedOut' });
+  const logout = useCallback(async () => {
+    try {
+      await authApi.logout();
+    } catch (err) {
+      console.error('Не удалось завершить сессию на сервере', err);
+    } finally {
+      dispatch({ type: 'auth/loggedOut' });
+    }
   }, []);
 
   const clearError = useCallback(() => {

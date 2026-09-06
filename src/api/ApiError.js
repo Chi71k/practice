@@ -5,4 +5,12 @@ export class ApiError extends Error {
     this.status = status;
     this.data = data;
   }
+
+  get code() {
+    return this.data?.error?.code;
+  }
+
+  get details() {
+    return this.data?.error?.details;
+  }
 }
